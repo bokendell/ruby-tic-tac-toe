@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 # This class stores the needed information for each player
-class TicTacToeBoard
-  require_relative 'player'
+class GameBoard
 
   def initialize
-    @players = []
     @current_board = [1...9]
     @moves_left = [1...9]
-    @winner = ''
   end
+
 
   def display_board
     puts " #{@current_board[0]} | #{@current_board[1]} | #{@current_board[2]}"
@@ -18,6 +16,16 @@ class TicTacToeBoard
     puts '___________'
     puts " #{@current_board[6]} | #{@current_board[7]} | #{@current_board[8]}"
   end
+
+  def add_move(location, character)
+    @current_board[location] = character
+    @moves_left -= location
+  end
+
+
+
+
+
 
   def play_turn(player)
     puts "#{player}, enter the number on the board of where you want to play"
