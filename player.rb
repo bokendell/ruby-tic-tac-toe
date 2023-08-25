@@ -2,13 +2,17 @@
 
 # This class stores the needed information for each player
 class Player
+  attr_reader :player_char, :player_name
+
   def initialize(player_name, player_char)
     @player_char = player_char
     @player_name = player_name
     @moves = []
   end
 
-  attr_writer :player_char, :player_name
+  def add_move(move)
+    @moves.append(move)
+  end
 
   def check_for_winner?
     possible_wins = [[1, 2, 3], [4, 5, 6], [7, 8, 9],

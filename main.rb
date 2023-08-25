@@ -2,26 +2,21 @@
 
 require_relative 'game'
 
-def play_game
+def play_new_game
   game = Game.new
-  game.play_game
-end
+  game.setup_new_game
+  game_finished = false
 
-def replay_game
-  puts 'Would you like to play again Y/N'
-  answer = gets.chomp
-
-  unless [Y, N].include?(answer)
-    puts 'Please enter a valid response'
-    answer = gets.chomp
+  while not (game_finished)
+    game.play_turn
+    game_finished = game.game_finished
   end
 
-  if answer == Y
-    game = Game.new
-    game.play_game
+  if game.replay_game?
+    play_new_game
   else
-    puts 'Thanks for playing!'
+    game.end_game
   end
 end
 
-play_game
+play_new_game
